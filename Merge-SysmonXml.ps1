@@ -265,7 +265,7 @@ function Merge-SysmonXml
     }
 
     $newDoc = [xml]@'
-<Sysmon schemaversion="4.60">
+<Sysmon schemaversion="4.70">
 <HashAlgorithms>*</HashAlgorithms> <!-- This now also determines the file names of the files preserved (String) -->
 <CheckRevocation>False</CheckRevocation> <!-- Setting this to true might impact performance -->
 <DnsLookup>False</DnsLookup> <!-- Disables lookup behavior, default is True (Boolean) -->
