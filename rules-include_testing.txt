@@ -168,7 +168,9 @@
 17_18_pipe_event\exclude_windows_generic.xml
 19_20_21_wmi_event\include_all.xml
 22_dns_query\include_all.xml
-23_file_delete\include_all.xml
+23_file_delete\include_user_writable_folders.xml
+23_file_delete\include_writable_folders.xml
+23_file_delete\exclude_windows_services.xml
 24_clipboard_change\exclude_all.xml
 25_process_tampering\include_all.xml
 26_file_delete_detected\exclude_google_chrome.xml
