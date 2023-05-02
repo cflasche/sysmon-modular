@@ -22,6 +22,9 @@
 				<TargetObject condition="end with">\Drive\shellex\DragDropHandlers</TargetObject>				<!--Microsoft:Windows: Remove noise monitoring Classes-->
 				<TargetObject condition="contains">_Classes\AppX</TargetObject>				<!--Microsoft:Windows: Remove noise monitoring "Shell\open\command"-->				<!--Win8+-->
 				<TargetObject condition="begin with">HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\WINEVT\Publishers\</TargetObject>				<!--Microsoft:Windows: SvcHost Noise-->
+				<TargetObject condition="contains all">SOFTWARE;\Microsoft\EnterpriseCertificates\Disallowed</TargetObject>
+				<TargetObject condition="contains all">SOFTWARE;\Microsoft\SystemCertificates\Disallowed</TargetObject>
+				<TargetObject condition="contains">Software\Microsoft\Windows\CurrentVersion\WinTrust\Trust Providers\Software Publishing</TargetObject>
 				<TargetObject condition="is">HKLM\SOFTWARE\Policies\Microsoft\SystemCertificates\Root\Certificates</TargetObject>
 				<Image condition="is">C:\Windows\SystemApps\Microsoft.Windows.Cortana_cw5n1h2txyewy\SearchUI.exe</Image>				<!--Microsoft:Windows: Remove noise from Windows 10 Cortana | Credit @ion-storm-->				<!--Win10-->
 				<Image condition="begin with">C:\$WINDOWS.~BT\</Image>				<!--Microsoft:Windows: Update/Upgrade noise -->
@@ -30,6 +33,12 @@
 					<Image condition="is">C:\Windows\system32\lsass.exe</Image>
 					<TargetObject condition="contains">HKLM\System\CurrentControlSet\Services</TargetObject>
 				</Rule>
+				<Rule groupRelation="and">
+					<TargetObject condition="contains">SOFTWARE\Microsoft\Windows\CurrentVersion\DeliveryOptimization</TargetObject>
+					<Image condition="is">C:\Windows\System32\svchost.exe</Image>
+				</Rule>
+				<TargetObject condition="is">HKLM\System\CurrentControlSet\Services\W32Time\Config\LastKnownGoodTime</TargetObject>
+				<TargetObject condition="is">HKLM\System\CurrentControlSet\Services\SmsRouter\State\Registration\Ids</TargetObject>
 			</RegistryEvent>
 		</RuleGroup>
 	</EventFiltering>
