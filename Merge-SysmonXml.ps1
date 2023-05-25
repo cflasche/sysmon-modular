@@ -309,16 +309,12 @@ function Merge-SysmonXml
 <!--           (&    ,&.                                                                                                         -->
 <!--            .*&&*.                                                                                                           -->
 <!--                                                                                                                             -->
-<Sysmon schemaversion="4.60">
+<Sysmon schemaversion="4.83">
 <HashAlgorithms>*</HashAlgorithms> <!-- This now also determines the file names of the files preserved (String) -->
 <CheckRevocation>False</CheckRevocation> <!-- Setting this to true might impact performance -->
 <DnsLookup>False</DnsLookup> <!-- Disables lookup behavior, default is True (Boolean) -->
 <ArchiveDirectory>Sysmon</ArchiveDirectory><!-- Sets the name of the directory in the C:\ root where preserved files will be saved (String)-->
 <EventFiltering>
-    <!-- Event ID 1 == Process Creation - Includes -->
-    <RuleGroup groupRelation="or">
-        <ProcessCreate onmatch="include"/>
-    </RuleGroup>
     <!-- Event ID 1 == Process Creation - Excludes -->
     <RuleGroup groupRelation="or">
         <ProcessCreate onmatch="exclude"/>
@@ -330,10 +326,6 @@ function Merge-SysmonXml
     <!-- Event ID 2 == File Creation Time - Excludes -->
     <RuleGroup groupRelation="or">
         <FileCreateTime onmatch="exclude"/>
-    </RuleGroup>
-    <!-- Event ID 3 == Network Connection - Includes -->
-    <RuleGroup groupRelation="or">
-        <NetworkConnect onmatch="include"/>
     </RuleGroup>
     <!-- Event ID 3 == Network Connection - Excludes -->
     <RuleGroup groupRelation="or">
@@ -352,10 +344,6 @@ function Merge-SysmonXml
     <RuleGroup groupRelation="or">
         <ImageLoad onmatch="include"/>
     </RuleGroup>
-    <!-- Event ID 7 == Image Loaded - Excludes -->
-    <RuleGroup groupRelation="or">
-        <ImageLoad onmatch="exclude"/>
-    </RuleGroup>
     <!-- Event ID 8 == CreateRemoteThread - Excludes -->
     <RuleGroup groupRelation="or">
          <!--Default to log all and exclude a few common processes-->
@@ -369,10 +357,6 @@ function Merge-SysmonXml
     <RuleGroup groupRelation="or">
         <ProcessAccess onmatch="include"/>
     </RuleGroup>
-    <!-- Event ID 10 == ProcessAccess - Excludes -->
-    <RuleGroup groupRelation="or">
-        <ProcessAccess onmatch="exclude"/>
-    </RuleGroup>
     <!-- Event ID 11 == FileCreate - Includes -->
     <RuleGroup groupRelation="or">
         <FileCreate onmatch="include"/>
@@ -385,25 +369,17 @@ function Merge-SysmonXml
     <RuleGroup groupRelation="or">
         <RegistryEvent onmatch="include"/>
     </RuleGroup>
-    <!-- Event ID 12,13,14 == RegObject added/deleted, RegValue Set, RegObject Renamed - Excludes -->
-    <RuleGroup groupRelation="or">
-        <RegistryEvent onmatch="exclude"/>
-    </RuleGroup>
     <!-- Event ID 15 == FileStream Created - Includes -->
     <RuleGroup groupRelation="or">
         <FileCreateStreamHash onmatch="include"/>
-    </RuleGroup>
-    <!-- Event ID 17,18 == PipeEvent. Log Named pipe created & Named pipe connected - Includes -->
-    <RuleGroup groupRelation="or">
-        <PipeEvent onmatch="include"/>
     </RuleGroup>
     <!-- Event ID 17,18 == PipeEvent. Log Named pipe created & Named pipe connected - Excludes -->
     <RuleGroup groupRelation="or">
     <PipeEvent onmatch="exclude"/>
     </RuleGroup>
-    <!-- Event ID 19,20,21, == WmiEvent. Log all WmiEventFilter, WmiEventConsumer, WmiEventConsumerToFilter activity - Includes -->
+	<!-- Event ID 19,20,21, == WmiEvent. Log all WmiEventFilter, WmiEventConsumer, WmiEventConsumerToFilter activity - Excludes -->
     <RuleGroup groupRelation="or">
-        <WmiEvent onmatch="include"/>
+        <WmiEvent onmatch="exclude"/>
     </RuleGroup>
     <!-- Event ID 22 == DNS Queries and their results Excludes -->
     <RuleGroup groupRelation="or">
