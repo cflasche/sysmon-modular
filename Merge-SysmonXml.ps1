@@ -357,6 +357,10 @@ function Merge-SysmonXml
     <RuleGroup groupRelation="or">
         <ProcessAccess onmatch="include"/>
     </RuleGroup>
+    <!-- Event ID 10 == ProcessAccess - Excludes -->
+    <RuleGroup groupRelation="or">
+        <ProcessAccess onmatch="include"/>
+    </RuleGroup>
     <!-- Event ID 11 == FileCreate - Includes -->
     <RuleGroup groupRelation="or">
         <FileCreate onmatch="include"/>
